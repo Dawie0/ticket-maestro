@@ -1,0 +1,27 @@
+/* Card.css */
+
+.card {
+    max-width: 250px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    margin: 10px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s;
+  }
+  
+  .card:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  .card-title {
+    font-size: 18px;
+    margin-top: 8px;
+  }
