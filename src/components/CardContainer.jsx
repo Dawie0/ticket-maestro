@@ -6,54 +6,64 @@ import Card from "./Card"
 
 
 const CardContainer = () => {
-    const { ApiData } = useContext(ApiContext)
+  const {  eventData, pageNumber, settingPageNumber, searchEvents, setEventData, showNext, showPrev } = useContext(ApiContext)
+  
 
-    const testArray = [
-        {
-          id: 1,
-          title: "Event Title 1",
-          image_url: "https://via.placeholder.com/150", // Placeholder image URL
-        },
-        {
-            id: 2,
-            title: "Event Title 1",
-            image_url: "https://via.placeholder.com/150", // Placeholder image URL
-          },
-          {
-            id: 3,
-            title: "Event Title 1",
-            image_url: "https://via.placeholder.com/150", // Placeholder image URL
-          },
-          {
-            id: 4,
-            title: "Event Title 1",
-            image_url: "https://via.placeholder.com/150", // Placeholder image URL
-          },
-          {
-            id: 5,
-            title: "Event Title 1",
-            image_url: "https://via.placeholder.com/150", // Placeholder image URL
-          },
-          {
-            id: 6,
-            title: "Event Title 1",
-            image_url: "https://via.placeholder.com/150", // Placeholder image URL
-          }
-        // Add more objects if needed...
-      ];
+   const populateCards = () => {
+    if (eventData && eventData._embedded) {
+      console.log(eventData)
+      if (eventData._embedded.events) {
+        return (
+          eventData._embedded.events.map((item) => {
+            return (
+              <Card key={item.id} data={item}/>
+            )
+          })
+        )
+      }
+      
+    }
+    <h2>Invalid Search</h2>
+   }
 
-      return (
-        <div className="row d-flex justify-content-center card-container">
-            <div className="col-10 d-flex justify-content-center">
-                <div className="row">
-                    {testArray.map((item) => (
-                        <Card key={item.id} data={item} />
-                    ))}
-                </div>
-                
-            </div>
-            
+  const nextPage = () => {
+    if (eventData.page.totalPages - 1 > pageNumber) {
+      settingPageNumber((curr) => curr + 1)
+      setEventData(null)
+      searchEvents()
+    }
+  }
+
+  const prevPage = () => {
+    if (eventData.page.number > 0) {
+      settingPageNumber((curr) => curr - 1)
+      setEventData(null)
+      searchEvents()
+    }
+  }
+  
+  return (
+    <div>
+      <div className="row d-flex justify-content-center card-container">
+        <div className="col-10 d-flex justify-content-center">
+          <div className="row">
+            {eventData ? populateCards() : ''}
+          </div>    
+        </div>    
+      </div>
+      <div className="row d-flex justify-content-center card-container">
+        <div className="col-2">
+          {showNext && <button onClick={nextPage}>
+            Next Page
+          </button>}
+          {showPrev && <button onClick={prevPage}>
+            Prev Page
+          </button>}
         </div>
+      </div>
+    </div>
+    
+    
       )
 
 }

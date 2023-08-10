@@ -1,6 +1,8 @@
 /* SearchForm.css */
 
 .search-form {
+  width: 100%;
+    max-width: 380px;
     background-color: #f5f5f5;
     padding: 20px;
     border-radius: 8px;
@@ -34,6 +36,7 @@
   }
   
   .search-content input[type="text"] {
+    width: 75%;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;

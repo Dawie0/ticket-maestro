@@ -10,7 +10,7 @@ const MainWindow = () => {
         <div className="container-fluid">
             <NavBar />
             <SearchForm />
-            <CardContainer />
+            <CardContainer /> 
         </div>
     )
 }
