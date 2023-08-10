@@ -61,10 +61,10 @@ const ApiContextProvider = ({ children }) => {
         let url = ''
         try {
           if (!keyword) {
-            url = `http://localhost:5000/api/list-events`
+            url = `https://ticket-maestro-backend.vercel.app/api/list-events`
           }
           else {
-            url = `http://localhost:5000/api/search-events/${keyword}/${pageNumber}`
+            url = `https://ticket-maestro-backend.vercel.app/api/search-events/${keyword}/${pageNumber}`
           }
           const response = await axios.get(url)
           setEventData(response.data)
